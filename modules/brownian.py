@@ -20,6 +20,18 @@ def D_rot(p):
     return 3.0 * KB0 * prm.T * (delta_rot + log(p)) / (pow(d, 3) * pow(p, 3) * PI * eta)
 
 
+def D_perp(p):
+    d = 2.0 * prm.radius * SIGMA0
+    eta = prm.eta * ETA0
+    nu_perp = 0.839 + (0.185 / p) + (0.233 / (p * p))
+    return (KB0 * (prm.T) * (nu_perp + log(p))) / (4.0 * d * p * PI * eta)
+
+def D_par(p):
+    d = 2.0 * prm.radius * SIGMA0
+    eta = prm.eta * ETA0
+    nu_par = -0.207 + (0.980 / p) - (0.133 / (p * p))
+    return (KB0 * (prm.T) * (nu_par + log(p))) / (2.0 * d * p * PI * eta)
+
 def brownian_translate(F_cons_component, D):
     kB = 1.0
     T = prm.T / T0
