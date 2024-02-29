@@ -36,7 +36,7 @@ fitline = f(t, *popt)
 
 with open("data/Drot_from_sampling_measured.dat", "w") as file:
     file.write("# Drot(input) \t\t Drot(measured) \t Error(%)\n")
-    file.write("{:4e}\t{:.4e}\t{:.2f}".format(D_input, D_measured, error))
+    file.write("{:.4e}\t{:.4e}\t{:.2f}".format(D_input, D_measured, error))
 
 
 
@@ -45,5 +45,5 @@ plt.plot(t, theta_sq_sampled, 'k-' , label=r"$\langle \Delta \theta^2 \rangle$")
 plt.plot(t, fitline, 'r--', label="Fit")
 plt.xlabel(r"$t/\tau$", fontsize=18)
 plt.ylabel(r"$\langle \Delta \theta^2 \rangle$", fontsize=18)
-plt.legend()
+plt.legend(fontsize=14)
 plt.savefig("plots/single_window_theta_sampled.pdf")

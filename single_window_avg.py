@@ -41,7 +41,7 @@ with open("data/single_window_theta.dat", "w") as file:
 
 sampling_window = 100
 
-n_samples = 5000
+n_samples = 500
 
 t, ang_disp, ang_disp_sq = np.loadtxt("data/single_window_theta.dat", unpack=True)
 
