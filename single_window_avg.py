@@ -12,7 +12,7 @@ theta0 = f.theta
 phi0 = f.phi
 dir0 = f.get_direction()
 
-t_max = 10000
+t_max = 3000
 
 t_list = np.zeros(t_max)
 
@@ -41,19 +41,23 @@ with open("data/single_window_theta.dat", "w") as file:
 
 sampling_window = 100
 
+# n_samples is only used for random sampling
 n_samples = 500
 
 t, ang_disp, ang_disp_sq = np.loadtxt("data/single_window_theta.dat", unpack=True)
 
 ang_disp_sq_avg_sampled = np.zeros(sampling_window)
 
-t0_iter_list = np.random.randint(0, t_max - sampling_window, n_samples)
+# t0_iter_list = np.random.randint(0, t_max - sampling_window, n_samples)
+t0_iter_list = np.arange(0, t_max - sampling_window)
 
-# print("t0_iter_list = ", t0_iter_list)
+print("t0_iter_list = ", t0_iter_list)
+
+print("Number of samples = ", len(t0_iter_list))
 
 t_shortened = t[:sampling_window]
 
-temp_ang_disp_sq = np.zeros(len(ang_disp_sq_avg_sampled))
+# temp_ang_disp_sq = np.zeros(len(ang_disp_sq_avg_sampled))
 
 for t0_i in t0_iter_list:
     for t_i in range(sampling_window):
@@ -65,7 +69,7 @@ for t0_i in t0_iter_list:
 # plt.legend()
 # plt.show()
 
-ang_disp_sq_avg_sampled /= n_samples
+ang_disp_sq_avg_sampled /= len(t0_iter_list)
 
 print("Writing data...")
 with open("data/single_window_theta_sampled.dat", "w") as file:
@@ -75,7 +79,3 @@ with open("data/single_window_theta_sampled.dat", "w") as file:
 with open("data/Drot_from_sampling_run.dat", "w") as file:
     file.write("# p \t\t\t D_rot(p)/D_rot(0)\n")
     file.write("{}\t{}".format(p, brn.D_rot(p) / brn.D_rot_0()))
-        
-
-
-    
