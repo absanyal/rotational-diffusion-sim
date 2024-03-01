@@ -27,8 +27,8 @@ D_measured = popt[0] / 2.0
 
 p, D_input = np.loadtxt("data/Drot_from_sampling_run.dat", unpack=True)
 
-print("D_input = ", D_input)
-print("D_measured = ", D_measured)
+print("D_input = {:.4e}".format(D_input))
+print("D_measured = {:.4e}".format(D_measured))
 error = np.abs((D_input - D_measured) / D_input) * 100
 print("Error = {:.2f} %".format(error))
 
