@@ -49,11 +49,14 @@ t_list = np.linspace(0.1, 30, 500)
 fp_list = np.zeros(len(t_list))
 wald_list = np.zeros(len(t_list))
 
-scale = 0.08
-tau_scale = 1.0/7.6
+scale = 1.5
+# tau_scale = 1.0/7.6
+tau_scale = 1.0
+
+D_input = 0.09
 
 for i in range(len(t_list)):
-    fp_list[i] = scale * firstpassage(tau_scale * t_list[i], theta_rad)
+    fp_list[i] = D_input * firstpassage(D_input * t_list[i], theta_rad)
     wald_list[i] = 3 * scale * wald(tau_scale * t_list[i], theta_rad)
 
 plt.plot(t_list, fp_list, label=r'First passage $({}\degree)$'.format(
