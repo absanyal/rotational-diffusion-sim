@@ -34,6 +34,8 @@ plt.figure(tight_layout=True)
 plt.xlabel(r"$t/\tau$", fontsize=18)
 plt.ylabel("Frequency", fontsize=18)
 
+plt.xlim(0, 30)
+
 plt.hist(data, bins=bins_list, histtype='bar', rwidth=0.8,
          color='b', edgecolor='k', density=True, align='left')
 
@@ -49,15 +51,11 @@ t_list = np.linspace(0.1, 30, 500)
 fp_list = np.zeros(len(t_list))
 wald_list = np.zeros(len(t_list))
 
-scale = 1.5
-# tau_scale = 1.0/7.6
-tau_scale = 1.0
 
-D_input = 0.09
+D_input = 0.06678507142321072
 
 for i in range(len(t_list)):
     fp_list[i] = D_input * firstpassage(D_input * t_list[i], theta_rad)
-    wald_list[i] = 3 * scale * wald(tau_scale * t_list[i], theta_rad)
 
 plt.plot(t_list, fp_list, label=r'First passage $({}\degree)$'.format(
     theta), linestyle="-", color="r")

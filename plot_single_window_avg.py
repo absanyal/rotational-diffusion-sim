@@ -38,6 +38,13 @@ with open("data/Drot_from_sampling_measured.dat", "w") as file:
     file.write("# Drot(input) \t\t Drot(measured) \t Error(%)\n")
     file.write("{:.4e}\t{:.4e}\t{:.2f}".format(D_input, D_measured, error))
 
+mean_sq_err = 0
+for i in range(len(t)):
+    mean_sq_err += ((theta_sq_sampled[i] - fitline[i]))**2
+
+mean_sq_err /= len(t)
+
+print("rms error in fitting= {:.4e}".format((mean_sq_err)**0.5))
 
 
 plt.figure(tight_layout=True)

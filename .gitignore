@@ -3,3 +3,4 @@ plots/
 notes/link_dist.pdf
 *.pyc
 test*
+out.*
